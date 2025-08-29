@@ -42,4 +42,16 @@ public class ChallengeManager : MonoBehaviour
             Debug.Log("Incorrect. Try again!");
         }
     }
+    void UpdateScoreUI()
+    {
+        scoreText.text = "Score: " + score;
+    }
+
+    void UnlockJobRole(int currentScore)
+    {
+        if (currentScore >= 500)
+            Debug.Log("Unlocked: Junior Developer");
+        else if (currentScore >= 1000)
+            Debug.Log("Unlocked: Data Scientist");
+    }
 }
