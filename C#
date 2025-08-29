@@ -1,0 +1,45 @@
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
+public class ChallengeManager : MonoBehaviour
+{
+    public TextMeshProUGUI questionText;
+    public Button[] answerButtons; // Assign 3 buttons in Inspector
+    public TextMeshProUGUI scoreText;
+    private int score = 0;
+
+    void Start()
+    {
+        scoreText.text = "Score: 0";
+        LoadQuestion();
+    }
+
+    void LoadQuestion()
+    {
+        // Sample question: Array time complexity
+        questionText.text = "What is the time complexity of accessing an array element?";
+        answerButtons[0].GetComponentInChildren<TextMeshProUGUI>().text = "A) O(1)";
+        answerButtons[1].GetComponentInChildren<TextMeshProUGUI>().text = "B) O(n)";
+        answerButtons[2].GetComponentInChildren<TextMeshProUGUI>().text = "C) O(log n)";
+
+        // Set correct answer (A) and others
+        answerButtons[0].onClick.AddListener(() => CheckAnswer(true, 100));
+        answerButtons[1].onClick.AddListener(() => CheckAnswer(false, 0));
+        answerButtons[2].onClick.AddListener(() => CheckAnswer(false, 0));
+    }
+
+    void CheckAnswer(bool isCorrect, int points)
+    {
+        if (isCorrect)
+        {
+            score += points;
+            scoreText.text = "Score: " + score;
+            Debug.Log("Correct! +" + points + " points");
+        }
+        else
+        {
+            Debug.Log("Incorrect. Try again!");
+        }
+    }
+}
