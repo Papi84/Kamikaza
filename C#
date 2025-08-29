@@ -42,16 +42,24 @@ public class ChallengeManager : MonoBehaviour
             Debug.Log("Incorrect. Try again!");
         }
     }
-    void UpdateScoreUI()
-    {
-        scoreText.text = "Score: " + score;
-    }
+}
+/* Step 4 ass Basic Narrative and Job Role unlock*/
 
-    void UnlockJobRole(int currentScore)
+void CheckAnswer(bool isCorrect, int points)
+{
+    if (isCorrect)
     {
-        if (currentScore >= 500)
+        score += points;
+        scoreText.text = "Score: " + score;
+        Debug.Log("Correct! +" + points + " points");
+        if (score >= 100)
+        {
             Debug.Log("Unlocked: Junior Developer");
-        else if (currentScore >= 1000)
-            Debug.Log("Unlocked: Data Scientist");
+            // Optionally show a UI popup
+        }
+    }
+    else
+    {
+        Debug.Log("Incorrect. Try again!");
     }
 }
